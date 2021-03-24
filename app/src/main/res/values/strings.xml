@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">ShimmerAnimationApp</string>
+
+    <string name="animal_name">Nome: %s</string>
+    <string name="animal_age">A idade do animal é %s ano(s)</string>
+    <string name="animal_legs">O animal possui %s patas</string>
+
+
+
 </resources>
