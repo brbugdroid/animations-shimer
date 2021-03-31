@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">ShimmerAnimationApp</string>
 
+    <!-- Fields for animal item holder-->
     <string name="animal_name">Nome: %s</string>
     <string name="animal_age">A idade do animal é %s ano(s)</string>
     <string name="animal_legs">O animal possui %s patas</string>
 
-
-
+    <!-- Titles for shimmer state-->
+    <string name="animation_start_title">Clique para iniciar a animação</string>
+    <string name="animation_stop_title">Clique para pausar a animação</string>
 </resources>

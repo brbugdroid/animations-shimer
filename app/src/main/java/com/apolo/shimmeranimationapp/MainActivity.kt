@@ -2,7 +2,6 @@ package com.apolo.shimmeranimationapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -12,44 +11,48 @@ import com.facebook.shimmer.ShimmerFrameLayout
 
 class MainActivity : AppCompatActivity() {
 
-
     lateinit var recyclerView : RecyclerView
     lateinit var itemsShimmer : ShimmerFrameLayout
     lateinit var startStopAnimation : TextView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        findViewsId()
+        setupRecyclerView()
+        setupShimmerAnimationListener()
 
-        recyclerView = findViewById<RecyclerView>(R.id.itens_list)
-        itemsShimmer = findViewById<ShimmerFrameLayout>(R.id.items_shimmer)
-        startStopAnimation = findViewById<TextView>(R.id.start_stop_animation)
-        itemsShimmer.startShimmer()
+    }
 
-        recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        recyclerView.layoutManager = LinearLayoutManager(this)
+    private fun findViewsId() {
+        recyclerView = findViewById(R.id.itens_list)
+        itemsShimmer = findViewById(R.id.items_shimmer)
+        startStopAnimation = findViewById(R.id.start_stop_animation)
+    }
 
-        Handler().postDelayed({
-            itemsShimmer.stopShimmer()
-            itemsShimmer.visibility = View.GONE
-            recyclerView.adapter = AnimalsAdapter(MockAnimals.getAnimals())
-        },8000)
-
+    private fun setupShimmerAnimationListener() {
         startStopAnimation.setOnClickListener {
-            if (itemsShimmer.isShimmerStarted){
-                startStopAnimation.text = "Clique para iniciar a animação"
+            if (itemsShimmer.isShimmerStarted) {
+                startStopAnimation.text = getString(R.string.animation_start_title)
                 itemsShimmer.stopShimmer()
                 itemsShimmer.visibility = View.GONE
                 recyclerView.visibility = View.VISIBLE
 
             } else {
-                startStopAnimation.text = "Clique para pausar a animação"
+                startStopAnimation.text = getString(R.string.animation_stop_title)
                 itemsShimmer.visibility = View.VISIBLE
                 recyclerView.visibility = View.GONE
                 itemsShimmer.startShimmer()
             }
+        }
+    }
+
+    private fun setupRecyclerView() {
+        recyclerView.apply {
+          addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
+          layoutManager = LinearLayoutManager(this@MainActivity)
+          adapter = AnimalsAdapter(MockAnimals.getAnimals())
         }
 
     }

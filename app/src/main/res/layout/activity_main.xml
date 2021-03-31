@@ -6,12 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- Este ponto é onde vc monta o esqueleto do Shimmer, use o mesmo layout
-     que será exibido dentro do ShimmerFrameLayout-->
+    <!-- Este ponto é onde vc monta o esqueleto do Shimmer.
+     O mesmo layout real da sua tela deverá ser colocado dentro do ShimmerFrameLayout
+     dessa forma a biblioteca usará o esqueleto e fará a animação-->
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/items_shimmer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:shimmer_auto_start="false"
+        android:visibility="gone"
         android:layout_marginTop="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/start_stop_animation">
@@ -22,25 +25,25 @@
             android:orientation="vertical"
             tools:visibility="gone">
 
-            <include layout="@layout/animal_view_holder" />
+            <include layout="@layout/animal_view_holder_shimmer" />
 
-            <include layout="@layout/animal_view_holder" />
+            <include layout="@layout/animal_view_holder_shimmer" />
 
-            <include layout="@layout/animal_view_holder" />
+            <include layout="@layout/animal_view_holder_shimmer" />
 
-            <include layout="@layout/animal_view_holder" />
+            <include layout="@layout/animal_view_holder_shimmer" />
 
-            <include layout="@layout/animal_view_holder" />
+            <include layout="@layout/animal_view_holder_shimmer" />
 
-            <include layout="@layout/animal_view_holder" />
+            <include layout="@layout/animal_view_holder_shimmer" />
 
-            <include layout="@layout/animal_view_holder" />
+            <include layout="@layout/animal_view_holder_shimmer" />
 
-            <include layout="@layout/animal_view_holder" />
+            <include layout="@layout/animal_view_holder_shimmer" />
 
-            <include layout="@layout/animal_view_holder" />
+            <include layout="@layout/animal_view_holder_shimmer" />
 
-            <include layout="@layout/animal_view_holder" />
+            <include layout="@layout/animal_view_holder_shimmer" />
 
         </LinearLayout>
 
@@ -53,13 +56,12 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:text="Clique para fazer a animação"
+        android:text="@string/animation_start_title"
         android:textAlignment="center"
         android:textSize="32dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/itens_list"
@@ -72,6 +74,5 @@
         app:layout_constraintTop_toBottomOf="@+id/start_stop_animation"
         tools:listitem="@layout/animal_view_holder"
         tools:visibility="gone" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
